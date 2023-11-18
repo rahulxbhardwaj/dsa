@@ -1,0 +1,18 @@
+public class Main {
+
+ public static void ansfinder(int number, String ans) {
+  if (number == 0) { 
+   System.out.println(ans);
+   return;
+  }
+
+  ansfinder(number - 1, ans + "1 ");
+if(number >=2) {
+ ansfinder(number - 2, ans + "2 ");
+}
+ }
+
+ public static void main(String[] args) {
+  ansfinder(10, "");
+ }
+}

@@ -1,0 +1,28 @@
+public static int search(int data[],int target , int st , int en){
+if(st>en){
+ return -1;
+}
+int mid = st + (en-st)/2;
+//Case Found
+if(data[mid] == target){
+ return mid;
+}
+//Mid on l1
+ if(data[st] <= data[mid]){
+  //Case A:
+  if(data[st] <= target && target <= data[mid]){
+   return search(data, target, st, mid-1);
+  }else {
+   return search(data, target, mid+1, en);
+  }
+ }
+ //mID ON l2
+ else{
+  //Case C :
+  if(data[mid] <= target && target <= data[en]){
+   return search(data, target, mid+1, en);
+  }else{
+   return search(data,target,st,mid-1);
+  }
+ }
+}

@@ -1,0 +1,42 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
+
+public class Main {
+public static boolean PairSum(ArrayList<Integer> Number , int target){
+    int bp = -1;
+    int n = Number.size();
+    for(int i = 0 ; i < Number.size() ; i++) {
+        if (Number.get(i) > Number.get(i + 1)) {
+            bp = i;
+            break;
+        }
+    }
+    int lp = bp+1;
+    int rp = bp;
+    while(lp != rp){
+        if(Number.get(lp) + Number.get(rp) == target){
+            return true;
+        }if(Number.get(lp) + Number.get(rp) < target){
+            lp = (lp+1) % n ;
+        }else{
+            rp = (n+rp-1) % n ;
+        }
+    }
+return false;
+
+}
+
+
+    public static void main(String[] args) {
+
+        ArrayList<Integer> Number = new ArrayList<>();
+    Number.add(11);
+    Number.add(15);
+    Number.add(6);
+    Number.add(8);
+    Number.add(9);
+    Number.add(10);
+        System.out.println(PairSum(Number,16));
+   }
+}

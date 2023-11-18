@@ -1,0 +1,29 @@
+import java.util.*;
+//Time Complexcity - 0(N)
+public class linkedhashmap {
+
+    public static void main(String[] args) {
+        int arr[] = {1,2,3,1,5,1,4,1,2,2,2,2,2,1,1,1};
+        HashMap<Integer,Integer> map = new HashMap();
+
+        //Adding Values to Hashmap
+        for(int i = 0 ; i < arr.length ; i++){
+            int nums = arr[i];
+            if(map.containsKey(nums)){
+                map.put(nums,map.get(nums)+1);
+            }else{
+                map.put(nums, 1);
+            }
+          // The Below line can also be used to short the if and else
+          //  map.put(nums, map.getOrDefault(nums, 0)+1);
+        }
+
+    Set<Integer> keyset = map.keySet();
+
+        for(int key : keyset){
+            if(map.get(key) > arr.length/3){
+                System.out.println(key);
+            }
+        }
+    }
+}

@@ -1,0 +1,11 @@
+   public static void KthLevel(Node root ,int level , int currLevel){
+        if(root == null){
+            return;
+        }
+        if(currLevel == level){
+            System.out.print(root.data+" ");
+        }
+            KthLevel(root.left , level , currLevel+1);
+            KthLevel(root.right , level , currLevel+1);
+            
+    }

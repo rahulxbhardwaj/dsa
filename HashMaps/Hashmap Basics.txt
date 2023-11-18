@@ -1,0 +1,17 @@
+import java.util.HashMap;
+import java.util.Set;
+
+public class practise {
+    public static void main(String[] args) {
+        HashMap<String,Integer> mp = new HashMap<>();
+        mp.put("India" , 130);
+        mp.put("China" , 130);
+        mp.put("Russia" , 130);
+
+        Set<String> keys = mp.keySet();
+
+        for (String k :keys) {
+            System.out.println("Keys = "+k+" Values = "+mp.get(k));
+        }
+    }
+}

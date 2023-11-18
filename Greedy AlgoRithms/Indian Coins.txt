@@ -1,0 +1,26 @@
+import java.util.ArrayList;
+
+public class practise{
+
+
+    public static void main(String[] args) {
+       int denomination[] = {1,2,5,10,20,50,100,500,2000};
+       int value = 1200;
+        ArrayList<Integer> notes = new ArrayList<>();
+        int notesUsed = 0;
+
+        int i = denomination.length-1;
+        while(value != 0){
+            if(value >= denomination[i]){
+                value -= denomination[i];
+                notes.add(denomination[i]);
+                notesUsed++;
+            }else{
+                i--;
+            }
+        }
+        System.out.println("Number of Notes Ued : "+notesUsed);
+        System.out.println(notes);
+    }
+
+}

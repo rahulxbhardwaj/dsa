@@ -1,0 +1,73 @@
+import java.util.Stack;
+
+public class practise{
+    public static void printarr(int arr[]){
+            for(int i = 0 ; i< arr.length ; i++){
+                System.out.print(arr[i] +" ");
+            }
+    }
+
+
+    public static void nextSmallerR(int data[] , int ans[]){
+        Stack<Integer> s = new Stack<>();
+        for(int i = data.length-1 ; i >= 0 ; i--){
+            if(s.isEmpty()){
+                ans[i] = -1;
+                s.push(i);
+            }else{
+                while (!s.isEmpty() && data[s.peek()] > data[i]){
+                    s.pop();
+                }
+                if(s.isEmpty()){
+                    ans[i] = -1;
+                    s.push(i);
+                }else {
+                    ans[i] = s.peek();
+                    s.push(i);
+                }
+            }
+        }
+    }
+    public static void nextSmallerL(int data[] , int ans[]){
+        Stack<Integer> s = new Stack<>();
+        for(int i = 0 ; i < data.length ; i++){
+            if(s.isEmpty()){
+                ans[i] = -1;
+                s.push(i);
+            }else{
+                while (!s.isEmpty() && data[s.peek()] > data[i]){
+                    s.pop();
+                }
+                if(s.isEmpty()){
+                    ans[i] = -1;
+                    s.push(i);
+                }else {
+                    ans[i] = s.peek();
+                    s.push(i);
+                }
+            }
+        }
+    }
+    public static int maxArea(int data[]){
+        int right[] = new int[data.length];
+        int left[] = new int[data.length];
+
+        nextSmallerR(data , right);
+        nextSmallerL(data , left);
+
+        int maxArea = Integer.MIN_VALUE;
+
+        for(int i = 0 ; i < data.length ; i++){
+            int area = data[i] * ((right[i] - left[i]) -1);
+            if(area > maxArea){maxArea = area;}
+        }
+    return maxArea;
+    }
+
+
+    public static void main(String[] args) {
+        int data[] = {2,1,5,6,2,3};
+        System.out.println(maxArea(data));
+    }
+
+}

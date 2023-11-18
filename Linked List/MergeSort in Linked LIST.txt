@@ -1,0 +1,101 @@
+public class scratch {
+
+    public static class Node {
+        int data;
+        Node next;
+
+        Node(int data) {
+            this.data = data;
+            next = null;
+        }
+    }
+
+    public static class LinkedList {
+        Node head;
+        int size;
+
+        void addFirst(int value) {
+            Node newNode = new Node(value);
+            newNode.next = head;
+            head = newNode;
+            size++;
+        }
+
+        void display() {
+            Node temp = head;
+            while (temp != null) {
+                System.out.print(temp.data + " ");
+                temp = temp.next;
+            }
+            System.out.println();
+        }
+    }
+
+    private static Node merge(Node left, Node right) {
+        Node mergedLL = new Node(-1);
+        Node temp = mergedLL;
+
+        while (left != null && right != null) {
+            if (left.data <= right.data) {
+                temp.next = left;
+                left = left.next;
+            } else {
+                temp.next = right;
+                right = right.next;
+            }
+            temp = temp.next;
+        }
+
+        if (left != null) {
+            temp.next = left;
+        } else if (right != null) {
+            temp.next = right;
+        }
+
+        return mergedLL.next;
+    }
+
+    private static Node getMid(Node head) {
+        Node slow = head;
+        Node fast = head.next;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    public static Node mergeSort(Node head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        Node mid = getMid(head);
+        Node rightHead = mid.next;
+        mid.next = null;
+
+        Node newLeft = mergeSort(head);
+        Node newRight = mergeSort(rightHead);
+
+        return merge(newLeft, newRight);
+    }
+
+    public static void main(String[] args) {
+        LinkedList list = new LinkedList();
+        list.addFirst(4);
+        list.addFirst(45);
+        list.addFirst(1);
+        list.addFirst(0);
+        list.addFirst(76);
+        list.addFirst(23);
+
+        System.out.println("Original Linked List:");
+        list.display();
+
+        list.head = mergeSort(list.head);
+
+        System.out.println("Sorted Linked List:");
+        list.display();
+    }
+}

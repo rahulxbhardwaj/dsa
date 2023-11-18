@@ -1,0 +1,34 @@
+import java.util.LinkedList;
+import java.util.Stack;
+//Time - 0(n)
+
+public class practise{
+
+
+    public static boolean checkPalindrome(LinkedList list) {
+        Stack stack = new Stack();
+        for(int i = 0 ; i< list.size() ; i++){
+            stack.push(list.get(i));
+        }
+        for(int i = 0 ; i < list.size() ; i++){
+            if(list.get(i) == stack.peek()){
+                stack.pop();
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args){
+        LinkedList list = new LinkedList();
+        list.addFirst(1);
+        list.addFirst('B');
+        list.addFirst('C');
+        list.addFirst('B');
+        list.addFirst('A');
+
+
+        System.out.println(checkPalindrome(list));
+    }
+}

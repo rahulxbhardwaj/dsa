@@ -1,0 +1,38 @@
+import java.util.Stack;
+//Time  Complexity - 0(n)
+public class practise {
+
+    public static void print(int data[]){
+        for (int i = 0 ;  i< data.length ; i++){
+            System.out.print(data[i] +" ");
+        }
+    }
+
+
+    public static void main(String[] args) {
+ int arr[] = {6,8,0,1,3};
+ Stack<Integer> s = new Stack<>();
+ int nextGreater[] = new int[arr.length];
+ for(int i = arr.length-1; i >= 0 ; i-- ){
+     //Step1  - While Loop
+     while(!s.isEmpty() && arr[s.peek()] <= arr[i]){
+         s.pop();
+     }
+     //Step 2 - If Else
+     if(s.isEmpty()){
+         nextGreater[i] = -1;
+     }else{
+         nextGreater[i] = arr[s.peek()];
+     }
+    //Step 3 - Push the Element
+     s.push(i);
+ }
+print(nextGreater);
+    }
+    //Next Greater Right size
+    //Next Greater Left size
+    //Next Smaller Right
+    //Next Smaller Left
+
+
+}

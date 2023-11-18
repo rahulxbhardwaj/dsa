@@ -1,0 +1,55 @@
+public class Main{
+
+ public static void printarr(int data[]){
+  for(int i = 0 ; i< data.length ; i++){
+   System.out.print(data[i] +" ");
+  }
+ }
+
+ public static void mergesort(int data[] , int st , int en){
+  if(st >= en){
+   return;
+  }
+
+  int mid = st + (en-st)/2;
+  mergesort(data,st,mid); //Left Part
+  mergesort(data,mid+1,en); //Right Part
+  merge(data,st,en,mid);
+ }
+ public static void merge(int data[], int st , int en , int mid){
+int temp[] = new int[en-st+1];
+int left = st;
+int right = mid+1;
+int k = 0;
+while(left <=mid && right <=en){
+ if(data[left] < data[right]){
+  temp[k] = data[left];
+  left++;
+ }else{
+  temp[k] = data[right];
+  right++;
+ }
+k++;
+}
+while(left<=mid){
+ temp[k++] = data[left++];
+}
+while(right <= en){
+ temp[k++] = data[right++];
+}
+for(k = 0 , left = st ; k< temp.length ; k++, left++){
+ data[left] = temp[k];
+}
+
+
+ }
+
+public static void main(String args[]){
+ int data[] = {4,5,65,7,0,1,2};
+mergesort(data,0, data.length-1);
+printarr(data);
+  
+ }
+}
+
+

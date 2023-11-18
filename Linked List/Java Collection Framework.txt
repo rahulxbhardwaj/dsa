@@ -1,0 +1,20 @@
+import java.util.LinkedList;
+class Scratch {
+
+
+
+    public static void main(String[] args) {
+        //Create
+        LinkedList<Integer> ll = new LinkedList<>();
+        //Add
+        ll.addLast(1);
+        ll.addLast(3);
+        ll.addLast(5);
+        ll.addFirst(0);
+        //Print
+        System.out.println(ll);
+        //Remove
+        ll.removeLast();
+        System.out.println(ll);
+    }
+}

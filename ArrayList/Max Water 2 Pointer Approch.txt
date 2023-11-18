@@ -1,0 +1,41 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Main {
+ 
+    public static void storewateradv(ArrayList<Integer> height){
+        int lp = 0;
+        int rp = height.size()-1;
+        while(lp < rp){
+            int min_height = Math.min(height.get(lp), height.get(rp));
+            int width = rp - lp;
+            int water = min_height * width;
+            max_water = Math.max(water,max_water);
+            if(height.get(lp) < height.get(rp)){
+                lp++;
+            }else{
+                rp--;
+            }
+
+        }
+
+
+    }
+
+
+    public static void main(String[] args) {
+
+        ArrayList<Integer> Height = new ArrayList<>();
+        Height.add(1);
+        Height.add(8);
+        Height.add(6);
+        Height.add(2);
+        Height.add(5);
+        Height.add(4);
+        Height.add(8);
+        Height.add(3);
+        Height.add(7);
+        storewateradv(Height);
+        System.out.println(max_water);
+    }
+}

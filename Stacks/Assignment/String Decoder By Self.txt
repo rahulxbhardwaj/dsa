@@ -1,0 +1,49 @@
+import java.util.Stack;
+
+public class practise{
+
+    public static StringBuilder decoder(String str){
+        Stack<Character> s = new Stack<>();
+        for(int i = 0 ; i < str.length() ; i++){
+            if(str.charAt(i) == ']'){
+                String temp = new String();
+                while(!s.isEmpty() && s.peek() != '['){
+                    temp+=s.peek();
+                    s.pop();
+                }
+                s.pop();
+                String num = new String();
+                while(!s.isEmpty() && Character.isDigit(s.peek())){
+                    num = s.peek()+num;
+                    s.pop();
+                }
+                int number = Integer.parseInt(num);
+                String repeat = new String();
+                for(int  j = 0 ; j<number ; j++){
+                    repeat = repeat+temp;
+                }
+                for(int k = 0 ; k<repeat.length() ; k++){
+                    s.push(repeat.charAt(k));
+                }
+
+            }else {
+                s.push(str.charAt(i));
+            }
+
+
+        }
+        StringBuilder res = new StringBuilder();
+        while(!s.isEmpty()){
+            res.append(s.pop());
+        }
+        return res;
+
+    }
+
+
+    public static void main(String[] args) {
+        String str = "3[b10[v]]";
+        System.out.println(decoder(str));
+    }
+
+}

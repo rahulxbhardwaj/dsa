@@ -1,0 +1,33 @@
+import java.util.Stack;
+
+public class practise {
+    // Time Comxeity - 0(n)
+    //Space Comxecity - 0(n)
+
+
+    public static void pushatBottom(Stack<Integer> list , int Number){
+                if(list.isEmpty()){
+                    list.push(4);
+                    return;
+                }
+
+        int num = list.pop();
+        pushatBottom(list, Number);
+        list.push(num);
+
+    }
+
+    public static void main(String[] args) {
+        Stack<Integer> list = new Stack<>();
+        list.push(1);
+        list.push(2);
+        list.push(3);
+
+    pushatBottom(list , 4);
+    while(!list.isEmpty()){
+        int num = list.pop();
+        System.out.println(num);
+    }
+    }
+
+}

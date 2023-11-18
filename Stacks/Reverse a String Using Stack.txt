@@ -1,0 +1,27 @@
+import java.util.Stack;
+
+public class practise {
+
+    public static StringBuilder reverseString(String str){
+        Stack<Character> s = new Stack<>();
+        int idx = 0;
+        while(idx < str.length()){
+            s.push(str.charAt(idx));
+            idx++;
+        }
+        StringBuilder result = new StringBuilder();
+        while(!s.isEmpty()){
+            char data = s.pop();
+            result.append(data);
+        }
+        return result;
+    }
+
+
+
+    public static void main(String[] args) {
+        System.out.println(reverseString("Hello"));
+
+    }
+
+}

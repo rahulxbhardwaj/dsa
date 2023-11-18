@@ -1,0 +1,82 @@
+public class practise{
+
+
+    public static class Node{
+        int data;
+        Node next;
+
+        Node(int data){
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    public static void print(Node head){
+        Node temp = head;
+        while(temp != null){
+            System.out.print(temp.data+" ");
+            temp = temp.next;
+        }
+    }
+    public static Node deleter(Node pointer_prev , int delete) {
+           if(pointer_prev == null){
+               return pointer_prev.next;
+           }
+            Node prev = pointer_prev;
+            Node curr = pointer_prev.next;
+            for(int i = 0 ;  i< delete; i++){
+                if(curr == null){
+                    return prev;
+                }
+                curr = curr.next;
+        }
+        prev.next = curr;
+        return curr;
+    }
+
+    public static void worker(int skip , int delete , Node head){
+        Node temp = head;
+        if(temp == null){
+            return;
+        }
+        for(int i = 0 ; i < skip-1 ; i++){
+            if(temp == null){
+                return;
+            }
+            temp = temp.next;
+        }
+        head = deleter(temp , delete);
+        worker(skip, delete, head);
+    }
+
+    public static void main(String[] args) {
+        Node N1 = new Node(1);
+        Node N2 = new Node(2);
+        Node N3 = new Node(3);
+        Node N4 = new Node(4);
+        Node N5 = new Node(5);
+        Node N6 = new Node(6);
+        Node N7 = new Node(7);
+        Node N8 = new Node(8);
+        Node N9 = new Node(9);
+
+        N1.next = N2;
+        N2.next = N3;
+        N3.next = N4;
+        N4.next = N5;
+        N5.next = N6;
+        N6.next = N7;
+        N7.next = N8;
+
+        int skip = 2;
+        int delete = 2;
+        print(N1);
+        System.out.println();
+        worker(skip , delete , N1);
+        print(N1);
+    }
+
+
+
+}
+

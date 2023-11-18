@@ -1,0 +1,32 @@
+public static Node findinorder(Node root){
+       while(root.left != null){
+           root = root.left;
+       }
+       return root;
+}
+public static Node delete(Node root , int num){
+
+        if(root.data < num){
+            root.right = delete(root.right,num);
+        } else if (root.data > num) {
+            root.left = delete(root.left,num);
+        }else{
+//Case Found
+            //Case 1 leaf node
+            if(root.left == null && root.right == null){
+                return null;
+            }
+            //case 2 - Single Child
+            if(root.left == null){
+                return root.right;
+            } else if (root.right == null) {
+            return root.left;
+            }
+
+            //Case 3 - Two Child
+            Node inorder = findinorder(root.right);
+            root.data = inorder.data;
+            root.right = delete(root.right,inorder.data);
+        }
+return root;
+}

@@ -1,0 +1,26 @@
+public class Main {
+
+public static int findways(int row,int colm , int trow , int tcolm){
+
+if(row == trow-1 && colm == tcolm-1){
+ return 1;
+}else if(row == trow || colm == tcolm){
+ return 0;
+}
+
+
+ int w1 = findways(row+1,colm,trow,tcolm);
+ int w2 = findways(row,colm+1,trow,tcolm);
+ return w1+w2;
+}
+
+
+ public static void main(String args[]) {
+
+  int trow = 3;
+  int tcolm = 3;
+  System.out.println(findways(0,0,trow,tcolm));
+
+
+ }
+}

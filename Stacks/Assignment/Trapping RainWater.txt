@@ -1,0 +1,38 @@
+
+import java.util.Stack;
+
+public class practise {
+
+    public static int TrappedWater(int height[]) {
+        if (height == null || height.length == 0) {
+            return 0;
+        }
+        int n = height.length;
+        int trappedwater = 0;
+        Stack<Integer> stack = new Stack<>();
+
+        for (int i = 0; i < n; i++) {
+
+            while (!stack.isEmpty() && height[i] > height[stack.peek()]) {
+                int bottom = stack.pop();
+                if (stack.isEmpty()) {
+                    break;
+                }
+                int distance = i - stack.peek() - 1;
+                int boundedHeight = Math.min(height[i], height[stack.peek()]) - height[bottom]; // Fix here
+                trappedwater += distance * boundedHeight;
+
+            }
+            stack.push(i);
+        }
+        return trappedwater;
+
+    }
+
+    public static void main(String[] args) {
+        int height[] = {7, 0, 4, 2, 5, 0, 6, 4, 0, 5};
+        System.out.println(TrappedWater(height));
+    }
+}
+
+

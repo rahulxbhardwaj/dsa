@@ -1,0 +1,39 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Main {
+static int max_water = Integer.MIN_VALUE;
+public static void storewater(ArrayList<Integer> height){
+    for(int i = 0 ; i < height.size() ; i++){
+        for(int j = i+1 ; j< height.size() ; j++){
+            int min_height = Math.min(height.get(i), height.get(j));
+            int width = j-i;
+            int water = min_height  * width;
+            if(max_water < water){
+                max_water = water;
+            }
+
+        }
+
+    }
+
+
+}
+
+
+ public static void main(String[] args) {
+
+  ArrayList<Integer> Height = new ArrayList<>();
+  Height.add(1);
+  Height.add(8);
+  Height.add(6);
+  Height.add(2);
+  Height.add(5);
+  Height.add(4);
+  Height.add(8);
+  Height.add(3);
+  Height.add(7);
+storewater(Height);
+     System.out.println(max_water);
+  }
+ }

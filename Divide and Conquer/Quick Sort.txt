@@ -1,0 +1,27 @@
+public static void quicksort(int data[] , int st , int en){
+
+ if(st>=en){
+  return;
+ }
+
+ int pidx = partition(data,st,en);
+ quicksort(data,st,pidx-1); //Left Part
+ quicksort(data,pidx+1,en); //Right Part
+}
+public static int partition(int data[] ,int st  ,int en){
+ int pivot = data[en];
+ int i = st-1;
+ for(int j = st; j < en ; j++){
+  if(data[j] <= pivot){
+   i++;
+   int temp = data[j];
+   data[j] = data[i];
+   data[i] = temp;
+  }
+ }
+ i++;
+ int temp = pivot;
+ data[en] = data[i];
+ data[i] = temp;
+ return i;
+}

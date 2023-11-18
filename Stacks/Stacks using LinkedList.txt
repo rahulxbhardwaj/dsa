@@ -1,0 +1,62 @@
+
+public class practise {
+    static class Node{
+        int data;
+        Node next;
+        Node(int data){
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    static class Stack {
+        static Node head = null;
+
+        public static boolean isEmpty() {
+            return head == null;
+        }
+        //PUSH
+        public static void push(int data){
+            Node newNode = new Node(data);
+            if(!isEmpty()){
+                newNode.next = head;
+                head = newNode;
+            }else{
+                head = newNode;
+            }
+        }
+        //POP
+        public static int pop(){
+            if(head == null){
+                return -1;
+            }else{
+                int data = head.data;
+                head = head.next;
+                return data;
+            }
+        }
+        //PEEK
+        public static int peek(){
+            if(head == null){
+                return -1;}
+            return head.data;
+        }
+    }
+
+
+    public static void main(String[] args) {
+     Stack list = new Stack();
+    list.push(5);
+    list.push(2);
+    list.push(53);
+    list.push(12);
+    list.push(98);
+        while(!list.isEmpty()){
+            System.out.println(list.peek());
+            list.pop();
+        }
+
+
+    }
+
+}

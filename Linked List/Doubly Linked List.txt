@@ -1,0 +1,53 @@
+
+
+public class practise{
+
+    public static class Node{
+
+        int data;
+        Node next;
+        Node prev;
+
+        Node(int data){
+            this.data = data;
+            next = null;
+            prev = null;
+        }
+    }
+
+    public static class Linkedlist {
+        Node head;
+        Node tail;
+      
+
+
+        void addlast(int Number) {
+            if (head == null) {
+                Node newNode = new Node(Number);
+                head = tail = newNode;
+                return;
+            }
+            Node newNode = new Node(Number);
+
+            tail.next = newNode;
+            newNode.prev = tail;
+            tail = newNode;
+
+
+        }
+    }
+
+
+    public static void main(String[] args) {
+        Linkedlist List = new Linkedlist();
+        List.addlast(1);
+        List.addlast(2);
+        List.addlast(3);
+        List.addlast(4);
+        List.addlast(5);
+        List.addlast(6);
+        System.out.println(List.head.next.prev.data);
+    }
+
+
+}

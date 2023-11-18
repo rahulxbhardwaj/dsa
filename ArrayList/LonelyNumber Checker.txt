@@ -1,0 +1,33 @@
+import java.util.ArrayList;
+public class Main {
+    public static ArrayList lonelyNumber(ArrayList<Integer> Number){
+        ArrayList<Integer> LonelyNumber = new ArrayList<>();
+        int n = Number.size();
+        for(int i = 0 ; i < n ; i++){
+            int CurrNumber = Number.get(i);
+            boolean check = true;
+            for(int j = 0 ; j<n ; j++){
+                if(j != i){
+                    int adjacent = Number.get(j);
+                   if( adjacent == CurrNumber+1 || adjacent == CurrNumber-1){
+                       check = false;
+                       break;
+                   }
+                }
+             }
+            if(check){
+                LonelyNumber.add(CurrNumber);
+            }
+        }
+return LonelyNumber;
+    }
+    public static void main(String[] args) {
+        ArrayList<Integer> Number = new ArrayList<>();
+    Number.add(10);
+    Number.add(6);
+    Number.add(5);
+    Number.add(8);
+    Number.add(-1);
+        System.out.println(lonelyNumber(Number));
+   }
+}

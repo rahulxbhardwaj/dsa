@@ -1,0 +1,52 @@
+  public static StringBuilder decoder(String str) {
+        Stack<Character> s = new Stack<>();
+        int i = 0;
+        StringBuilder result = new StringBuilder();
+
+        while (i < str.length()) {
+            char currentChar = str.charAt(i);
+
+            if (Character.isDigit(currentChar)) {
+                StringBuilder numStr = new StringBuilder();
+                while (i < str.length() && Character.isDigit(str.charAt(i))) {
+                    numStr.append(str.charAt(i));
+                    i++;
+                }
+                int num = Integer.parseInt(numStr.toString());
+
+                if (i < str.length() && str.charAt(i) == '[') {
+                    s.push((char) num); // Push the numeric multiplier onto the stack
+                    s.push('[');
+                    i++;
+                }
+            } else if (currentChar == ']') {
+                StringBuilder temp = new StringBuilder();
+                while (!s.isEmpty() && s.peek() != '[') {
+                    temp.insert(0, s.pop());
+                }
+                s.pop(); // Pop the '['
+
+                int num = (int) s.pop(); // Pop the numeric multiplier
+
+                StringBuilder repeatedData = new StringBuilder();
+                for (int j = 0; j < num; j++) {
+                    repeatedData.append(temp);
+                }
+
+                for (int j = 0; j < repeatedData.length(); j++) {
+                    s.push(repeatedData.charAt(j));
+                }
+
+                i++;
+            } else {
+                s.push(currentChar);
+                i++;
+            }
+        }
+
+        while (!s.isEmpty()) {
+            result.insert(0, s.pop());
+        }
+
+        return result;
+    }

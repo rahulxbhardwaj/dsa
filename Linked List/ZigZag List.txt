@@ -1,0 +1,93 @@
+
+public class practise{
+
+    public static class Node{
+        int data;
+        Node next;
+        Node(int data){
+            this.data = data;
+            this.next = null;
+        }
+    }
+    public static class LinkedList{
+        Node head;
+        int size = 0;
+
+        void addfirst(int data){
+            Node newNode = new Node(data);
+            newNode.next = head;
+            head = newNode;
+            size++;
+        }
+        void print(){
+            Node temp = head;
+            while(temp != null){
+                System.out.print(temp.data +" ");
+                temp = temp.next;
+            }
+        }
+    }
+
+    public static Node findmid(Node head){
+        Node slow = head;
+        Node fast = head.next;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+    public static Node reverse(Node mid){
+        Node prev = null;
+        Node curr = mid;
+        Node next;
+        while(curr != null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+    public static void print(Node head){
+        Node temp = head;
+        while(temp != null){
+            System.out.print(temp.data +" ");
+            temp = temp.next;
+        }
+    }
+    public static Node zigzag(Node lh , Node rh){
+        Node LH = lh;
+        Node RH = rh;
+        Node nextL , nextR;
+        while(LH != null && RH != null){
+            nextL = LH.next;
+            LH.next = RH;
+            nextR = RH.next;
+            RH.next = nextL;
+
+            LH = nextL;
+            RH = nextR;
+        }
+        return lh;
+    }
+
+    public static void main(String[] args) {
+    LinkedList List = new LinkedList();
+    List.addfirst(6);
+    List.addfirst(5);
+    List.addfirst(4);
+    List.addfirst(3);
+    List.addfirst(2);
+    List.addfirst(1);
+    Node ReverseHead = reverse(findmid(List.head));
+    print(zigzag(List.head , ReverseHead));
+
+
+    //Step1 - fIND MID
+        // Step 2 - REVERSE SECOND HALF
+        //Step 3 - Alternate the List
+    
+    }
+
+}

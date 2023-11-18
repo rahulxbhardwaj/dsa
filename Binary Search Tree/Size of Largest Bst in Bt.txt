@@ -1,0 +1,62 @@
+public class practise {
+    public static class Node {
+        int data;
+        Node left;
+        Node right;
+
+        public Node(int data) {
+            this.data = data;
+            left = null;
+            right = null;
+        }
+    }
+
+    public static class info{
+        boolean isBst;
+        int size;
+        int min;
+        int max;
+        info(boolean check,int size,int min,int max){
+            this.isBst = check;
+            this.size = size;
+            this.min = min;
+            this.max = max;
+        }
+    }
+    public static int sizze = 0;
+    public static info maxbst(Node root){
+        if(root == null){
+            return new info(true,0, Integer.MAX_VALUE,Integer.MIN_VALUE);
+        }
+        info left = maxbst(root.left);
+        info right = maxbst(root.right);
+        int len = left.size + right.size + 1;
+        int min = Math.min(root.data,Math.min(left.min, right.min));
+        int max = Math.max(root.data,Math.max(left.max, right.max));
+
+        if(root.data <= left.max || root.data >= right.min){
+            return new info(false,len,min,max);
+        }
+
+        if(left.isBst && right.isBst){
+            sizze = Math.max(sizze,len);
+            return new info(true,len,min,max);
+        }
+    return new info(false,len,min,max);
+    }
+
+    public static void main(String[] args) {
+        Node root = new Node(50);
+        root.left = new Node(30);
+        root.left.left = new Node(5);
+        root.left.right = new Node(20);
+        root.right = new Node(60);
+        root.right.left = new Node(45);
+        root.right.right = new Node(70);
+        root.right.right.left = new Node(65);
+        root.right.right.right = new Node(80);
+        maxbst(root);
+        System.out.println(sizze);
+
+    }
+}

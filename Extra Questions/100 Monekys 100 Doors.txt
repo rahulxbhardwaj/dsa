@@ -1,0 +1,47 @@
+import java.util.ArrayList;
+
+public class Main {
+
+ public static int DoorNumber = 1;
+ public static void result(boolean doors[]){
+  ArrayList<Integer> openeDoors = new ArrayList<>();
+  for(int i = 0 ; i < doors.length ; i++){
+   if(doors[i]){
+    System.out.println("True" +" "+DoorNumber);
+    DoorNumber++;
+    openeDoors.add(i);
+   } else if (!doors[i]) {
+    System.out.println("False"+" "+DoorNumber);
+    DoorNumber++;
+   }
+  }
+  System.out.print(openeDoors);
+  System.out.println("  "+"will be Opened ! ! ");
+ }
+public static void calculation(boolean doors[] , int num){
+  if(num > 100){
+   result(doors);
+   return;
+  }
+
+  for(int i = 0 ; i < doors.length ; i++){
+   if(i%num == 0){
+    if(!doors[i]){
+     doors[i] = true;
+    } else if (doors[i]) {
+     doors[i] = false;
+    }
+   }
+  }
+  calculation(doors, num+1);
+}
+ public static void main(String[] args) {
+
+boolean doors[] = new boolean[100];
+for(int i = 0 ; i< doors.length ; i++){
+   doors[i] = false;
+}
+calculation(doors,1);
+
+  }
+ }

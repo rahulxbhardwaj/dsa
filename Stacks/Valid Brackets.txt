@@ -1,0 +1,45 @@
+import java.util.Stack;
+
+public class practise{
+    public static boolean checker(String data , Stack<Character> s ){
+        boolean check = true;
+        String validBracket = "({[";
+        String validBracketClose = ")}]";
+        for(int i = 0  ; i<data.length() ; i++){
+            char curr = data.charAt(i);
+
+            if(validBracket.contains(String.valueOf(curr))){
+                s.push(curr);
+            } else if (validBracketClose.contains(String.valueOf(curr))) {
+                if(s.isEmpty()){
+                    check =  false;
+                    break;
+                }else{
+                  int closingIndex = validBracketClose.indexOf(curr);
+                  char expectedOpening = validBracket.charAt(closingIndex);
+                  if(s.peek() == expectedOpening){
+                      s.pop();
+                  }else{
+                      check = false;
+                      break;
+                  }
+
+                }
+            }
+        }
+    return check && s.isEmpty();
+    }
+
+    public static void main(String[] args) {
+        Stack<Character> s = new Stack<>();
+        String data = "({}])";
+
+        if(!checker(data ,s)){
+            System.out.println("The Given Brackets are Invalid ! !");
+        } else if (checker(data , s )) {
+            System.out.println("The Given Brackets are Valid ! !");
+        }
+
+    }
+
+        }

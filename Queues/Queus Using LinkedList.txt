@@ -1,0 +1,68 @@
+public class practise{
+
+    public static class Node{
+        int data;
+        Node next;
+
+        Node(int num){
+            data = num;
+            next = null;
+        }
+
+    }
+
+    public static class queue{
+        static Node head;
+        static Node tail;
+
+        static boolean isEmpty(){
+            return head == null && tail == null;
+        }
+
+        static void add(int num){
+            Node temp = new Node(num);
+            // Adding First Element
+            if(head == null){
+                head = tail = temp;
+            }else{
+                tail.next = temp;
+                tail = temp;
+            }
+        }
+
+        static int remove(){
+            if(isEmpty()){
+                System.out.println("Empty Queue");
+                return -1;
+            }
+            int result = head.data;
+            if(head == tail){
+                head = tail = null;
+            }else{
+                head = head.next;
+            }
+            return result;
+
+        }
+        static int peek(){
+            int result = head.data;
+            return result;
+        }
+    }
+
+    public static void main(String[] args) {
+    queue q = new queue();
+    q.add(5);
+    q.add(6);
+    q.add(7);
+        System.out.println(q.peek());
+        System.out.println();
+
+        while(!q.isEmpty()){
+            System.out.println(q.peek());
+            q.remove();
+        }
+
+    }
+
+}

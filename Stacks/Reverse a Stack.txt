@@ -1,0 +1,43 @@
+import java.util.Stack;
+
+public class practise {
+
+    public static void pushatBottom(Stack<Integer> list , int Number){
+        if(list.isEmpty()){
+            list.push(Number);
+            return;
+        }
+
+        int num = list.pop();
+        pushatBottom(list, Number);
+        list.push(num);
+
+    }
+    public static void reverse(Stack<Integer> data){
+        if(data.isEmpty()){
+            return;
+        }
+        int num = data.pop();
+        reverse(data);
+        pushatBottom(data,num);
+    }
+    public static void printStack(Stack<Integer> data){
+        while(!data.isEmpty()){
+            System.out.println(data.pop());
+        }
+    }
+
+
+    public static void main(String[] args) {
+        Stack<Integer> data = new Stack<>();
+        data.push(1);
+        data.push(2);
+        data.push(3);
+
+
+        reverse(data);
+        printStack(data);
+
+    }
+
+}
